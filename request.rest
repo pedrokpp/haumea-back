@@ -2,8 +2,8 @@ POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-    "username": "pedrokp",
-    "password": "memed"
+    "username": "a",
+    "password": "a"
 }
 
 ###
@@ -12,6 +12,6 @@ POST http://localhost:3000/users/register
 Content-Type: application/json
 
 {
-    "username": "pedrokp",
-    "password": "memed"
+    "username": "a",
+    "password": "a"
 }
