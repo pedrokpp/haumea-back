@@ -11,4 +11,6 @@ db.once('open', () => console.log("dbs conectada"))
 
 app.use(express.json())
 
+app.use('/users', require('./routes/login'))
+
 app.listen(3000, () => console.log("api listening at port 3000"))
