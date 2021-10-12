@@ -26,6 +26,7 @@ Ocorre caso o username enviado não exista no banco de dados
 
 Caso o try/catch da database falhe
 
+---
 
 - [ ] **POST** ``/users/register``
 
@@ -53,6 +54,7 @@ Caso o usuário já exista
 
 Caso o try/catch da database falhe
 
+---
 
 - [ ] **PATCH** ``/:username``
 
@@ -72,6 +74,7 @@ Ocorre quando não é passado key como parâmetro "auth" no body ou a key não �
 
 Caso o try/catch da database falhe
 
+---
 
 - [ ] **GET** ``/aulas``
 
@@ -80,6 +83,8 @@ Responsável por dar fetch nas aulas disponíveis
 _Conversar sobre apenas mostrar as aulas proporcionalmente à porcentagem de conclusão do curso_
 
 _response não definida ainda_
+
+---
 
 ## User Level
 - ### 0
