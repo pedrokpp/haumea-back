@@ -15,3 +15,13 @@ Content-Type: application/json
     "username": "a",
     "password": "a"
 }
+
+###
+
+PATCH http://localhost:3000/users/pedrokp
+Content-Type: application/json
+
+{
+    "auth": "983ce014-7645-427c-bea7-08440711c600",
+    "userLevel": 2
+}

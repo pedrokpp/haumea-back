@@ -20,7 +20,8 @@ router.post('/register', registerMiddleware, async (req, res) => {
     })
 
     try {
-        const newUser = await user.save()
+        await user.save()
+
         return res.status(201).send('usuário criado')
     } catch {
         return res.status(500).send('erro interno')
@@ -28,8 +29,18 @@ router.post('/register', registerMiddleware, async (req, res) => {
 
 })
 
-router.patch('/:username', checkAdminKey, (req, res) => {
-    
+// router.patch('/change-password')
+
+router.patch('/:username', checkAdminKey, async (req, res) => {
+    let user = {}
+
+    try {
+        await User.updateOne({ "username": req.params.username }, { "userLevel": req.body.userLevel })
+        user = await User.findOne({ "username": req.params.username })
+        return res.status(200).json(user)
+    } catch {
+        return res.status(500).send('erro interno')
+    }
 })
 
 async function loginMiddleware(req, res, next) {
