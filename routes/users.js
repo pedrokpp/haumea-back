@@ -21,7 +21,6 @@ router.post('/register', registerMiddleware, async (req, res) => {
 
     try {
         await user.save()
-
         return res.status(201).send('usuário criado')
     } catch {
         return res.status(500).send('erro interno')
