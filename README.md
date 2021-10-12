@@ -4,7 +4,7 @@ Esse README contém os endpoints e funcionará como TODO list para o backend.
 ## Endpoints
 Cada endpoint tem uma marcação indicando se já foi concluído ou não
 
-- [ ] ``/login`` **POST**
+- [ ] ``/users/login`` **POST**
 
 Responsável por confirmar logins.
 
@@ -23,7 +23,7 @@ Responsável por confirmar logins.
 }
 ```
 
-- [ ] ``/register`` **POST**
+- [ ] ``/users/register`` **POST**
 
 Responsável por registrar usuários.
 
@@ -44,7 +44,7 @@ Responsável por registrar usuários.
     "error": "usuário inválido"
 }
 ```
-- [ ] ``/fetch-aulas`` **GET**
+- [ ] ``/aulas`` **GET**
 
 Responsável por dar fetch nas aulas disponíveis
 
