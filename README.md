@@ -10,19 +10,19 @@ Responsável por confirmar logins.
 
 ### Responses
 
-- 200 _logado com sucesso_
+- **200** _``logado com sucesso``_
 
 Ocorre caso a request seja bem sucedida
 
-- 401 _senha inválida_
+- **401** _``senha inválida``_
 
 Ocorre caso a senha enviada falhe na comparação de hash
 
-- 400 _usuário não existe_
+- **400** _``usuário não existe``_
 
 Ocorre caso o username enviado não exista no banco de dados
 
-- 500 _erro interno_
+- **500** _``erro interno``_
 
 Caso o try/catch da database falhe
 
@@ -34,23 +34,23 @@ Responsável por registrar usuários.
 
 ### Responses
 
-- 201 _usuário criado_
+- **201** _``usuário criado``_
 
 Ocorre caso a request seja bem sucedida
 
-- 400 _username muito grande_, _username muito pequeno_
+- **400** _``username muito grande``_ ou _``username muito pequeno``_
 
 Ocorre caso o username enviado tenha mais de 16 e menos de 3 caracteres
 
-- 400 _username contém caracteres inválidos_
+- **400** _``username contém caracteres inválidos``_
 
 Ocorre caso o check da regex ``^[a-zA-Z0-9_]*$`` falhe
 
-- 400 _usuário já existente_
+- **400** _``usuário já existente``_
 
 Caso o usuário já exista
 
-- 500 _erro interno_
+- **500** _``erro interno``_
 
 Caso o try/catch da database falhe
 
@@ -62,15 +62,15 @@ Responsável por dar update no ``userLevel`` de um usuário
 
 ### Responses
 
-- 200 _{ user json }_
+- **200** _``{ user json }``_
 
 Ocorre quando a request foi bem sucedida
 
-- 401 _acesso não autorizado_
+- **401** _``acesso não autorizado``_
 
 Ocorre quando não é passado key como parâmetro "auth" no body ou a key não é igual
 
-- 500 _erro interno_
+- **500** _``erro interno``_
 
 Caso o try/catch da database falhe
 
