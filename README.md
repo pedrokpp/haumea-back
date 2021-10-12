@@ -5,6 +5,7 @@ Esse README contém os endpoints e funcionará como TODO list para o backend.
 Cada endpoint tem uma marcação indicando se já foi concluído ou não
 
 - [ ] ``/login`` **POST**
+
 Responsável por confirmar logins.
 
 ```json
@@ -23,6 +24,7 @@ Responsável por confirmar logins.
 ```
 
 - [ ] ``/register`` **POST**
+
 Responsável por registrar usuários.
 
 ```json
@@ -43,6 +45,7 @@ Responsável por registrar usuários.
 }
 ```
 - [ ] ``/fetch-aulas`` **GET**
+
 Responsável por dar fetch nas aulas disponíveis
 
 _Conversar sobre apenas mostrar as aulas proporcionalmente à porcentagem de conclusão do curso_
