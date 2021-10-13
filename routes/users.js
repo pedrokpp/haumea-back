@@ -1,13 +1,16 @@
 const express = require("express")
 const bcrypt = require("bcrypt")
-const router = express.Router()
 const User = require('../models/user')
+const jwt = require('../jwt/jwt')
+const router = express.Router()
 
 router.post('/login', loginMiddleware, async (req, res) => {
     const user = { username: req.body.username, password: req.body.password }
     if (!(await bcrypt.compare(req.body.password, req.body.user.password))) {
         return res.status(401).send('senha inválida')
     } else {
+        res.cookie("session", jwt.generateAccessToken({ username: req.body.user.username, 
+            userLevel: req.body.user.userLevel }), { maxAge: 604800000 })
         return res.status(200).send('logado com sucesso')
     }
 })
@@ -21,6 +24,8 @@ router.post('/register', registerMiddleware, async (req, res) => {
 
     try {
         await user.save()
+        res.cookie("session", jwt.generateAccessToken({ username: user.username, 
+            userLevel: user.userLevel }), { maxAge: 604800000 })
         return res.status(201).send('usuário criado')
     } catch {
         return res.status(500).send('erro interno')
