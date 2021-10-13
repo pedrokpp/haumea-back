@@ -1,21 +1,23 @@
 const mongoose = require('mongoose')
 
+const requiredString = {
+    type: String,
+    required: true
+}
+
+const requiredNumber = {
+    type: Number,
+    required: true
+}
+
 const userSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    userLevel: {
-        type: Number,
-        required: true
-    },
+    username: requiredString,
+    password: requiredString,
+    userLevel: requiredNumber,
     token: {
         type: String,
-        required: false
+        required: true,
+        default: "aaa"
     },
     date: {
         type: String,
