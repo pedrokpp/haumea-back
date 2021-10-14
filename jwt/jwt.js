@@ -6,7 +6,7 @@ function generateAccessToken(user) {
     return jwt.sign(user, process.env.JWT_TOKEN, { expiresIn: "1s" });
 }
 
-function isTokenValid(token) {
+async function isTokenValid(token) {
     const fToken = await expiredTokens.findOne({ token: token });
 
     if (fToken) return false;
