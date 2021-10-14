@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const express = require("express");
+const cookieParser = require('cookie-parser');
 const app = express();
 require("dotenv").config();
 
@@ -13,6 +14,7 @@ db.on("error", (error) => console.error("dbs error: " + error));
 db.once("open", () => console.log("dbs conectada"));
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/users", require("./routes/users"));
 

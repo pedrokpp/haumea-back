@@ -1,9 +1,8 @@
 const jwt = require("jsonwebtoken");
-const fs = require("fs");
 const expiredTokens = require("../models/expiredTokens");
 
 function generateAccessToken(user) {
-    return jwt.sign(user, process.env.JWT_TOKEN, { expiresIn: "1s" });
+    return jwt.sign(user, process.env.JWT_TOKEN, { expiresIn: "10s" });
 }
 
 async function isTokenValid(token) {
@@ -13,6 +12,7 @@ async function isTokenValid(token) {
 
     try {
         jwt.verify(token, process.env.JWT_TOKEN);
+        return true;
     } catch {
         const newExpiredToken = new expiredTokens({
             token: token,
@@ -20,7 +20,6 @@ async function isTokenValid(token) {
         newExpiredToken.save();
         return false;
     }
-    return true;
 }
 
 module.exports = { generateAccessToken, isTokenValid };

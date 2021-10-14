@@ -14,11 +14,6 @@ const userSchema = new mongoose.Schema({
     username: requiredString,
     password: requiredString,
     userLevel: requiredNumber,
-    token: {
-        type: String,
-        required: true,
-        default: "aaa",
-    },
     date: {
         type: String,
         required: true,

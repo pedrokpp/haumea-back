@@ -22,7 +22,7 @@ router.post(
                 username: req.body.user.username,
                 userLevel: req.body.user.userLevel,
             }),
-            { maxAge: 604800000 }
+            { maxAge: 604800000, httpOnly: true }
         );
 
         return res.status(200).send("logado com sucesso");
@@ -47,7 +47,7 @@ router.post(
                     username: user.username,
                     userLevel: user.userLevel,
                 }),
-                { maxAge: 604800000 }
+                { maxAge: 604800000, httpOnly: true }
             );
             return res.status(201).send("usuário criado");
         } catch {
