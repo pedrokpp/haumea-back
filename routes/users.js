@@ -56,7 +56,6 @@ router.post(
     }
 );
 
-// TODO changePasswordMiddleware
 router.patch(
     "/change-password",
     require("./middlewares/changePassMiddleware"),
