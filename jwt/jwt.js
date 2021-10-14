@@ -1,22 +1,25 @@
-const jwt = require('jsonwebtoken')
-const fs = require('fs')
+const jwt = require("jsonwebtoken");
+const fs = require("fs");
 
 function generateAccessToken(user) {
-    return jwt.sign(user, process.env.JWT_TOKEN, { expiresIn: '7d' })
+    return jwt.sign(user, process.env.JWT_TOKEN, { expiresIn: "1s" });
 }
 
 function isTokenValid(token) {
-    let expiredTokens = fs.readFileSync('./expired-tokens.txt', { encoding: 'utf-8' }).trim().split("\n")
-    if (expiredTokens.includes(token)) return false
-    
-    let value = jwt.verify(token, process.env.JWT_TOKEN)
+    let expiredTokens = fs
+        .readFileSync("./expired-tokens.txt", { encoding: "utf-8" })
+        .trim()
+        .split("\n");
+    if (expiredTokens.includes(token)) return false;
+
+    let value = jwt.verify(token, process.env.JWT_TOKEN);
 
     if (value == null) {
-        fs.appendFileSync('./expired-tokens.txt', `${token}\n`)
-        return false
+        fs.appendFileSync("./expired-tokens.txt", `${token}\n`);
+        return false;
     }
-    
-    return true
+
+    return true;
 }
 
-module.exports = { generateAccessToken, isTokenValid }
+module.exports = { generateAccessToken, isTokenValid };

@@ -1,14 +1,14 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const requiredString = {
     type: String,
-    required: true
-}
+    required: true,
+};
 
 const requiredNumber = {
     type: Number,
-    required: true
-}
+    required: true,
+};
 
 const userSchema = new mongoose.Schema({
     username: requiredString,
@@ -17,13 +17,13 @@ const userSchema = new mongoose.Schema({
     token: {
         type: String,
         required: true,
-        default: "aaa"
+        default: "aaa",
     },
     date: {
         type: String,
         required: true,
-        default: new Date().toLocaleTimeString('pt-br')
-    }
-})
+        default: new Date().toLocaleTimeString("pt-br"),
+    },
+});
 
-module.exports = mongoose.model('user', userSchema)
+module.exports = mongoose.model("user", userSchema);
