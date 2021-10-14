@@ -60,8 +60,6 @@ router.patch(
     "/change-password",
     require("./middlewares/changePassMiddleware"),
     async (req, res) => {
-        let user = {};
-
         try {
             await User.updateOne(
                 { username: req.body.username },
