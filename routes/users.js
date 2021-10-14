@@ -33,8 +33,8 @@ router.post('/register', require('./middlewares/registerMiddleWare'), async (req
 
 })
 
-// TODO change password
-router.patch('/change-password', (req, res) => {
+// TODO changePasswordMiddleware
+router.patch('/change-password', async (req, res) => {
     let user = {}
 
     try {
