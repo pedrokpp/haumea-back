@@ -1,5 +1,5 @@
 const User = require("../../models/user");
-const expiredTokens = require("../models/expiredTokens"); 
+const expiredTokens = require("../../models/expiredTokens"); 
 const bcrypt = require("bcrypt");
 
 async function changePassMiddleware(req, res, next) {
