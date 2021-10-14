@@ -7,7 +7,11 @@ async function registerMiddleware(req, res, next) {
     if (!req.body.username || !req.body.password)
         return res.status(400).send("body incompleto");
 
-    // if (req.cookies.session && !jwt.isTokenValid(req.cookies.session)) return res.status(403).send('token inválido, crie uma nova sessão')
+    if (req.cookies.session) {
+        if (!jwt.isTokenValid(req.cookies.session))
+            return res.status(403).send("token inválido, crie uma nova sessão");
+        return res.status(200).send("logado com sucesso via token");
+    }
 
     if (req.body.username.length > 16)
         return res.status(400).send("username muito grande");

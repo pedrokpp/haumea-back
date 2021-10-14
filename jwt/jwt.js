@@ -1,24 +1,25 @@
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
+const expiredTokens = require("../models/expiredTokens");
 
 function generateAccessToken(user) {
     return jwt.sign(user, process.env.JWT_TOKEN, { expiresIn: "1s" });
 }
 
 function isTokenValid(token) {
-    let expiredTokens = fs
-        .readFileSync("./expired-tokens.txt", { encoding: "utf-8" })
-        .trim()
-        .split("\n");
-    if (expiredTokens.includes(token)) return false;
+    const fToken = await expiredTokens.findOne({ token: token });
 
-    let value = jwt.verify(token, process.env.JWT_TOKEN);
+    if (fToken) return false;
 
-    if (value == null) {
-        fs.appendFileSync("./expired-tokens.txt", `${token}\n`);
+    try {
+        jwt.verify(token, process.env.JWT_TOKEN);
+    } catch {
+        const newExpiredToken = new expiredTokens({
+            token: token,
+        });
+        newExpiredToken.save();
         return false;
     }
-
     return true;
 }
 
