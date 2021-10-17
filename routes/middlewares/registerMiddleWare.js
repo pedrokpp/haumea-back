@@ -7,16 +7,16 @@ async function registerMiddleware(req, res, next) {
     if (!req.body.username || !req.body.password)
         return res.status(400).send("body incompleto");
 
-    const sessionToken = req.cookies.session;
+    // const sessionToken = req.cookies.session;
 
-    if (sessionToken != undefined && sessionToken) {
-        if (!(await jwt.isTokenValid(sessionToken))) {
-            res.clearCookie("session");
-            next();
-            return;
-        }
-        return res.status(200).send("logado com sucesso via token");
-    }
+    // if (sessionToken != undefined && sessionToken) {
+    //     if (!(await jwt.isTokenValid(sessionToken))) {
+    //         res.clearCookie("session");
+    //         next();
+    //         return;
+    //     }
+    //     return res.status(200).send("logado com sucesso via token");
+    // }
 
     if (req.body.username.length > 16)
         return res.status(400).send("username muito grande");
