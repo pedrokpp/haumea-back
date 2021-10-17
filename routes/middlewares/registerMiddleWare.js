@@ -20,7 +20,7 @@ async function registerMiddleware(req, res, next) {
 
     if (req.body.username.length > 16)
         return res.status(400).send("username muito grande");
-    if (req.body.username.lengt < 3)
+    if (req.body.username.length < 3)
         return res.status(400).send("username muito pequeno");
     if (req.body.username.match("^[a-zA-Z0-9_]*$") == null)
         return res.status(400).send("username contém caracteres inválidos");
