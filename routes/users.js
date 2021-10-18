@@ -16,21 +16,10 @@ router.post(
         if (!(await bcrypt.compare(req.body.password, req.body.user.password)))
             return res.status(401).send("senha inválida");
 
-<<<<<<< HEAD
-        res.cookie(
-            "session",
-            jwt.generateAccessToken({
-                username: req.body.user.username,
-                userLevel: req.body.user.userLevel,
-            }),
-            { maxAge: 604800000, httpOnly: false }
-        );
-=======
         const token = jwt.generateAccessToken({
             username: req.body.user.username,
             userLevel: req.body.user.userLevel,
         });
->>>>>>> dev
 
         return res.status(200).json({ token: token });
     }
@@ -48,23 +37,11 @@ router.post(
 
         try {
             await user.save();
-<<<<<<< HEAD
-            res.cookie(
-                "session",
-                jwt.generateAccessToken({
-                    username: user.username,
-                    userLevel: user.userLevel,
-                }),
-                { maxAge: 604800000, httpOnly: false }
-            );
-            return res.status(201).send("usuário criado");
-=======
             const token = jwt.generateAccessToken({
                 username: user.username,
                 userLevel: user.userLevel,
             });
             return res.status(201).json({ token: token });
->>>>>>> dev
         } catch {
             return res.status(500).send("erro interno");
         }
