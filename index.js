@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const express = require("express");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const app = express();
 require("dotenv").config();
 
@@ -15,6 +16,7 @@ db.once("open", () => console.log("dbs conectada"));
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 app.use("/users", require("./routes/users"));
 
