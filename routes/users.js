@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
+const Token = require("../models/expiredTokens");
 const jwt = require("../jwt/jwt");
 const router = express.Router();
 
@@ -63,6 +64,23 @@ router.patch(
         }
     }
 );
+
+router.post("/logout", async (req, res) => {
+    if (!req.body.token) return res.status(400).send("body incompleto");
+    const newExpiredToken = new Token({
+        token: req.body.token,
+    });
+    await newExpiredToken.save();
+    return res.status(200).send("token invalidado");
+});
+
+router.post("/validate-token", async (req, res) => {
+    if (!req.body.token) return res.status(400).send("body incompleto");
+
+    if (await jwt.isTokenValid(req.body.token))
+        return res.status(200).send("token válido");
+    return res.status(404).send("token inválido");
+});
 
 // router.delete("/delete-account")
 
