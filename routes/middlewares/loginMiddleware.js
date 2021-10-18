@@ -7,16 +7,6 @@ async function loginMiddleware(req, res, next) {
     if (!req.body.username || !req.body.password)
         return res.status(400).send("body incompleto");
 
-    const sessionToken = req.cookies.session;
-
-    if (sessionToken != undefined && sessionToken) {
-        if (!(await jwt.isTokenValid(sessionToken))) {
-            res.clearCookie("session");
-            return res.status(403).send("token inválido, crie uma nova sessão");
-        }
-        return res.status(200).send("logado com sucesso via token");
-    }
-
     try {
         user = await User.findOne({ username: req.body.username });
         if (!user) return res.status(400).send("usuário não existe");
