@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
 const express = require("express");
+<<<<<<< HEAD
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+=======
+const cookieParser = require('cookie-parser');
+const cors = require('cors')
+>>>>>>> dev
 const app = express();
 require("dotenv").config();
 
@@ -15,6 +20,7 @@ db.on("error", (error) => console.error("dbs error: " + error));
 db.once("open", () => console.log("dbs conectada"));
 
 app.use(express.json());
+app.use(cors())
 app.use(cookieParser());
 app.use(cors());
 
