@@ -13,7 +13,23 @@ async function registerMiddleware(req, res, next) {
     } catch {
         return res.status(500).send("erro interno");
     }
-    next();
+
+    const user = new User({
+        username: req.body.username,
+        password: await bcrypt.hash(req.body.password, 10),
+        userLevel: 0,
+    });
+
+    try {
+        await user.save();
+        const token = jwt.generateAccessToken({
+            username: user.username,
+            userLevel: user.userLevel,
+        });
+        return res.status(201).json({ token: token });
+    } catch {
+        return res.status(500).send("erro interno");
+    }
 }
 
 module.exports = registerMiddleware;

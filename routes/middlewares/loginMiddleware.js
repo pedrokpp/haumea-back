@@ -13,8 +13,16 @@ async function loginMiddleware(req, res, next) {
     } catch {
         return res.status(500).send("erro interno");
     }
-    req.body.user = user;
-    next();
+
+    if (!(await bcrypt.compare(req.body.password, req.body.user.password)))
+        return res.status(401).send("senha inválida");
+
+    const token = jwt.generateAccessToken({
+        username: req.body.user.username,
+        userLevel: req.body.user.userLevel,
+    });
+
+    return res.status(200).json({ token: token });
 }
 
 module.exports = loginMiddleware;

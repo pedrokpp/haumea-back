@@ -15,7 +15,15 @@ async function changePassMiddleware(req, res, next) {
 
     // TODO invalidar token
 
-    next();
+    try {
+        await User.updateOne(
+            { username: req.body.username },
+            { password: await bcrypt.hash(req.body.newPassword, 10) }
+        );
+        return res.status(200).send("senha alterada");
+    } catch {
+        return res.status(500).send("erro interno");
+    }
 }
 
 module.exports = changePassMiddleware;
