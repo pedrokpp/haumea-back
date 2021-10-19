@@ -1,5 +1,6 @@
 const User = require("../../models/user");
 const jwt = require("../../jwt/jwt");
+const bcrypt = require("bcrypt");
 
 async function registerMiddleware(req, res, next) {
     let user = {};
@@ -14,17 +15,17 @@ async function registerMiddleware(req, res, next) {
         return res.status(500).send("erro interno");
     }
 
-    const user = new User({
+    const newUser = new User({
         username: req.body.username,
         password: await bcrypt.hash(req.body.password, 10),
         userLevel: 0,
     });
 
     try {
-        await user.save();
+        await newUser.save();
         const token = jwt.generateAccessToken({
-            username: user.username,
-            userLevel: user.userLevel,
+            username: newUser.username,
+            userLevel: newUser.userLevel,
         });
         return res.status(201).json({ token: token });
     } catch {
