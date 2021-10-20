@@ -1,7 +1,7 @@
 const User = require("../../models/user");
 const bcrypt = require("bcrypt");
 
-async function deleteUserMiddleware(req, res, next) {
+module.exports = async (req, res, next) => {
     if (!req.body.username || !req.body.password)
         return res.status(400).send("body incompleto");
 
@@ -13,6 +13,4 @@ async function deleteUserMiddleware(req, res, next) {
     } catch {
         return res.status(500).send("erro interno");
     }
-}
-
-module.exports = deleteUserMiddleware;
+};

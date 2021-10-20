@@ -2,7 +2,7 @@ const User = require("../../models/user");
 const jwt = require("../../jwt/jwt");
 const bcrypt = require("bcrypt");
 
-async function registerMiddleware(req, res, next) {
+module.exports = async (req, res, next) => {
     let user = {};
 
     if (!req.body.username || !req.body.password)
@@ -31,6 +31,4 @@ async function registerMiddleware(req, res, next) {
     } catch {
         return res.status(500).send("erro interno");
     }
-}
-
-module.exports = registerMiddleware;
+};

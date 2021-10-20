@@ -2,7 +2,7 @@ const User = require("../../models/user");
 const jwt = require("../../jwt/jwt");
 const bcrypt = require("bcrypt");
 
-async function loginMiddleware(req, res, next) {
+module.exports = async (req, res, next) => {
     let user = {};
 
     if (!req.body.username || !req.body.password)
@@ -24,6 +24,4 @@ async function loginMiddleware(req, res, next) {
     });
 
     return res.status(200).json({ token: token });
-}
-
-module.exports = loginMiddleware;
+};

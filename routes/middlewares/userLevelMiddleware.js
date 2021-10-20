@@ -1,4 +1,4 @@
-async function userLevelMiddleware(req, res, next) {
+module.exports = async (req, res, next) => {
     let user = {};
 
     try {
@@ -11,6 +11,4 @@ async function userLevelMiddleware(req, res, next) {
     } catch {
         return res.status(500).send("erro interno");
     }
-}
-
-module.exports = userLevelMiddleware;
+};

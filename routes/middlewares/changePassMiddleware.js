@@ -2,7 +2,7 @@ const User = require("../../models/user");
 const expiredTokens = require("../../models/expiredTokens");
 const bcrypt = require("bcrypt");
 
-async function changePassMiddleware(req, res, next) {
+module.exports = async (req, res, next) => {
     if (!req.body.username || !req.body.password || !req.body.newPassword)
         return res.status(400).send("body incompleto");
 
@@ -24,6 +24,4 @@ async function changePassMiddleware(req, res, next) {
     } catch {
         return res.status(500).send("erro interno");
     }
-}
-
-module.exports = changePassMiddleware;
+};
