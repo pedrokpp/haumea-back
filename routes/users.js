@@ -18,6 +18,12 @@ router.post(
     require("./middlewares/validateTokenMiddleware")
 );
 
+router.get("/:username", async (req, res) => {
+    const user = await User.findOne({ username: req.params.username });
+    if (!user) return res.status(404).send("username não encontrado");
+    return res.status(200).send(user.userLevel.toString());
+});
+
 router.delete(
     "/delete-account",
     require("./middlewares/deleteUserMiddleware"),
