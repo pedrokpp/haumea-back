@@ -1,3 +1,5 @@
+const Token = require("../../../models/expiredTokens");
+
 module.exports = async (req, res, next) => {
     if (!req.body.token) return res.status(400).send("body incompleto");
     const newExpiredToken = new Token({

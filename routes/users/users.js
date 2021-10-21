@@ -1,8 +1,8 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const User = require("../models/user");
-const Token = require("../models/expiredTokens");
-const jwt = require("../jwt/jwt");
+const User = require("../../models/user");
+const Token = require("../../models/expiredTokens");
+const jwt = require("../../jwt/jwt");
 const router = express.Router();
 
 router.post("/login", require("./middlewares/loginMiddleware"));

@@ -1,5 +1,5 @@
-const User = require("../../models/user");
-const expiredTokens = require("../../models/expiredTokens");
+const User = require("../../../models/user");
+const expiredTokens = require("../../../models/expiredTokens");
 const bcrypt = require("bcrypt");
 
 module.exports = async (req, res, next) => {

@@ -1,5 +1,5 @@
-const User = require("../../models/user");
-const jwt = require("../../jwt/jwt");
+const User = require("../../../models/user");
+const jwt = require("../../../jwt/jwt");
 const bcrypt = require("bcrypt");
 
 module.exports = async (req, res, next) => {

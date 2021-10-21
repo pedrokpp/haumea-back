@@ -21,6 +21,6 @@ app.use(cors());
 app.use(cookieParser());
 app.use(cors());
 
-app.use("/users", require("./routes/users"));
+app.use("/users", require("./routes/users/users"));
 
 app.listen(port, () => console.log("api listening at port " + port));
