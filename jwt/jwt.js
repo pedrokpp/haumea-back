@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const expiredTokens = require("../models/expiredTokens");
 
 function generateAccessToken(user) {
-    return jwt.sign(user, process.env.JWT_TOKEN, { expiresIn: "10s" });
+    return jwt.sign(user, process.env.JWT_TOKEN, { expiresIn: "10s" }); // aumentar tempo para produção
 }
 
 async function isTokenValid(token) {
