@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
 
     if (
         req.body.username.length > 16 ||
-        req.body.username.lengt < 3 ||
+        req.body.username.length < 3 ||
         req.body.username.match("^[a-zA-Z0-9_]*$") == null
     )
         return res.status(400).send("nome de usuário inválido"); // manter check para segurança contra exploits
