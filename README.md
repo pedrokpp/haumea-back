@@ -1,5 +1,6 @@
 # Haumea API
-Esse README contém os endpoints e funcionará como TODO list para o backend.
+Lembre-se antes de rodar o back-end de fazer o setup do MongoDB, instalar NodeJS e rodar ``npm install`` 
+para instalar as dependências do projeto
 
 ## Endpoints
 Cada endpoint tem uma marcação indicando se já foi concluído ou não
