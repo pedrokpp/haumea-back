@@ -2,6 +2,8 @@
 Lembre-se antes de rodar o back-end de fazer o setup do MongoDB, instalar NodeJS e rodar ``npm install`` 
 para instalar as dependências do projeto
 
+Também altere as variáveis de ambiente ou ``.env`` com possível nova URL do MongoDB ou novas keys 
+
 ## Endpoints
 Cada endpoint tem uma marcação indicando se já foi concluído ou não
 
