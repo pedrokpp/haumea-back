@@ -8,6 +8,13 @@ module.exports = async (req, res, next) => {
     if (!req.body.username || !req.body.password)
         return res.status(400).send("body incompleto");
 
+    if (
+        req.body.username.length > 16 ||
+        req.body.username.lengt < 3 ||
+        req.body.username.match("^[a-zA-Z0-9_]*$") == null
+    )
+        return res.status(400).send("nome de usuário inválido"); // manter check para segurança contra exploits
+
     try {
         user = await User.findOne({ username: req.body.username });
         if (user) return res.status(400).send("usuário já existente");

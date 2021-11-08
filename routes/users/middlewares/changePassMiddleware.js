@@ -3,7 +3,12 @@ const expiredTokens = require("../../../models/expiredTokens");
 const bcrypt = require("bcrypt");
 
 module.exports = async (req, res, next) => {
-    if (!req.body.username || !req.body.password || !req.body.newPassword)
+    if (
+        !req.body.username ||
+        !req.body.password ||
+        !req.body.newPassword ||
+        !req.body.token
+    )
         return res.status(400).send("body incompleto");
 
     const user = await User.findOne({ username: req.body.username });
@@ -13,7 +18,10 @@ module.exports = async (req, res, next) => {
     if (!(await bcrypt.compare(req.body.password, user.password)))
         return res.status(401).send("senha inválida");
 
-    // TODO invalidar token
+    const newExpiredToken = new Token({
+        token: req.body.token,
+    });
+    await newExpiredToken.save();
 
     try {
         await User.updateOne(

@@ -1,8 +1,4 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
-const User = require("../../models/user");
-const Token = require("../../models/expiredTokens");
-const jwt = require("../../jwt/jwt");
 const router = express.Router();
 
 router.post("/login", require("./middlewares/loginMiddleware"));
@@ -18,17 +14,9 @@ router.post(
     require("./middlewares/validateTokenMiddleware")
 );
 
-router.get("/:username", require("./middlewares/getUserMiddleware"));
+router.get("/:username", require("./middlewares/getUserMiddleware")); // retorna apenas o userLevel do usuário
 
-router.delete(
-    "/delete-account",
-    require("./middlewares/deleteUserMiddleware"),
-    // TODO delete-account endpoint
-    async (req, res) => {
-        if (!(await bcrypt.compare(req.body.password, req.body.user.password)))
-            return res.status(401).send("senha inválida");
-    }
-);
+router.delete("/delete-account", require("./middlewares/deleteUserMiddleware"));
 
 router.patch(
     "/:username",
