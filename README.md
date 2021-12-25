@@ -4,6 +4,8 @@ para instalar as dependências do projeto
 
 Também altere as variáveis de ambiente ou ``.env`` com possível nova URL do MongoDB ou novas keys 
 
+Houve um momento que eu dei push num `.env` para conseguir passar informações para outra máquina e aquelas credenciais não funcionam mais e eu sei que não se deve fazer isso!!!!
+
 ## Endpoints
 Cada endpoint tem uma marcação indicando se já foi concluído ou não
 
